@@ -7,17 +7,30 @@ def modexp(x, y, N):
     Input: Three positive integers x and y, and N.
     Output: The number x^y mod N
     """
-    return 0
+    if (y == 0):
+        return 1
+
+    z = modexp(x, math.floor(y/2), N)
+
+    if (y % 2 == 0):
+        return math.pow(z,2) % N
+    else:
+        return (x * math.pow(z,2)) % N
 
 
 # part (ii) for extended Euclid  -- fill in the code below
 def extended_euclid(a, b):
     """
     Input: Two positive integers a >= b >= 0
-    Output: Three integers x, y, and d returned as a tuple (x, y, d) 
+    Output: Three integers x, y, and d returned as a tuple (x, y, d)
             such that d = gcd(a, b) and ax + by = d
     """
-    return 0, 0, 0
+    if (b == 0):
+        return 1, 0, a
+
+    x, y, d = extended_euclid(b, a%b)
+
+    return y, x - math.floor(a/b) * y, d
 
 
 def main():
@@ -34,21 +47,25 @@ def main():
     if modexp(325942, 25000000, 7) == 1:
         print("modexp passed test 2")
     else:
-        print("modexp failed test 2")    
-    
+        print("modexp failed test 2")
+
     # testing extended Euclid
     (x, y, d) = extended_euclid(125, 15)
     if d == 5 and x*125 + y*15 == d:
-        print("extended_euclid passed test 1") 
+        print("extended_euclid passed test 1")
     else:
         print("extended_euclid failed test 1")
 
-    # extended_euclid -- test 2    
+    # extended_euclid -- test 2
     (x, y, d) = extended_euclid(10203040, 20304)
     if d == 16 and x*10203040 + y*20304 == d:
-        print("extended_euclid passed test 2") 
+        print("extended_euclid passed test 2")
     else:
         print("extended_euclid failed test 2")
+
+    for x in range(0, 63):
+        if (36 * x) % 63 == 9 % 63:
+            print(x)
 
 if __name__ == '__main__':
     main()
