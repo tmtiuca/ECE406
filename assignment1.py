@@ -63,9 +63,8 @@ def main():
     else:
         print("extended_euclid failed test 2")
 
-    for x in range(0, 63):
-        if (36 * x) % 63 == 9 % 63:
-            print(x)
+    print('extended_euclid(4, 7)')
+    print(extended_euclid(4, 7))
 
 if __name__ == '__main__':
     main()
