@@ -13,9 +13,9 @@ def modexp(x, y, N):
     z = modexp(x, math.floor(y/2), N)
 
     if (y % 2 == 0):
-        return math.pow(z,2) % N
+        return (z*z) % N
     else:
-        return (x * math.pow(z,2)) % N
+        return (x * z*z) % N
 
 
 # part (ii) for extended Euclid  -- fill in the code below
