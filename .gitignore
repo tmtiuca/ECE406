@@ -102,3 +102,6 @@ ENV/
 
 # Word cache file
 ~$*.docx
+
+# mac files
+.DS_Store
